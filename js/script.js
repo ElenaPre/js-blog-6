@@ -51,32 +51,19 @@ function generateTitleLinks() {
 generateTitleLinks();
 
 function generateTags() {
-  /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
-  console.log(articles);
-  /* START LOOP: for every article: */
   for (let article of articles) {
-    /* find tags wrapper */
     const tagWrapper = article.querySelector(optArticleTagsSelector);
-    console.log("tagwr",tagWrapper);
-
-    /* make html variable with empty string */
+    const articleTags = article.getAttribute("data-tags");
+    const tagsArray = articleTags.split(" ");
     let html = "";
 
-    /* get tags from data-tags attribute */
-
-    const articleTags = article.getAttribute("data-tags");
-    /* split tags into array */
-    const tagsArray = articleTags.split(" ");
-
-    /* START LOOP: for each tag */
     for (let tag of tagsArray) {
       const linkHTML = '<li> <a href="#tag-' + tag + '">' + tag + '</a></li>';
       html = html + linkHTML +" ";
     }
-    tagWrapper.innerHTML = html;
 
+    tagWrapper.innerHTML = html;
   }
 }
-
 generateTags();
