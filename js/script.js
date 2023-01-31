@@ -53,10 +53,12 @@ generateTitleLinks();
 function generateTags() {
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
+  console.log(articles);
   /* START LOOP: for every article: */
   for (let article of articles) {
     /* find tags wrapper */
-    const tagWrapper = document.querySelectorAll(optArticleTagsSelector);
+    const tagWrapper = article.querySelector(optArticleTagsSelector);
+    console.log("tagwr",tagWrapper);
 
     /* make html variable with empty string */
     let html = "";
@@ -69,15 +71,11 @@ function generateTags() {
 
     /* START LOOP: for each tag */
     for (let tag of tagsArray) {
-      /* generate HTML of the link */
-      const linkHTML = '<li> <a href="#tag-' + tag + '">' + tag + "</a></li>";
-      html = html + linkHTML;
+      const linkHTML = '<li> <a href="#tag-' + tag + '">' + tag + '</a></li>';
+      html = html + linkHTML +" ";
     }
     tagWrapper.innerHTML = html;
-    /* add generated code to html variable */
-    /* END LOOP: for each tag */
-    /* insert HTML of all the links into the tags wrapper */
-    /* END LOOP: for every article: */
+
   }
 }
 
