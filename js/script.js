@@ -73,7 +73,9 @@ generateTags();
 function tagClickHandler(event) {
   event.preventDefault();
   const clickedElement = this;
+  console.log(clickedElement);
   const href = clickedElement.getAttribute("href");
+  console.log(href);
   const tag = href.replace("#tag-", "");
   const activeTags = document.querySelectorAll(' a.active[href^="#tag-"]');
   for (let activeTag of activeTags) {
@@ -113,10 +115,17 @@ function authorClickHandler(event) {
   const clickedElement = this;
   const href = clickedElement.getAttribute("href");
   const author = href.replace("#", "");
-  const activeArticlesAuthor = document.querySelectorAll('a.active[href^="#"]');
+  const activeArticlesAuthor = document.querySelectorAll(' a.active[href^="#"]');
   for (let activeArticleAuthor of activeArticlesAuthor) {
     activeArticleAuthor.classList.remove("active");
   }
+  const activeAuthors=document.querySelectorAll('a[href="' + href + '"]');
+  for(let activeAuthor of activeAuthors){
+    activeAuthor.classList.add("active");
+  }
+  generateTitleLinks('[data-author="' + author + '"]');
+
+
 }
 
 function addClickListenersToAuthors() {
